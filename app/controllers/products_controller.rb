@@ -1,8 +1,11 @@
 class ProductsController < ApplicationController
 
 def index
-  @tacos = Product.all
-  
+  if params[:view] == "discounted"
+    @tacos = Product.get_discounted
+  else
+    @tacos = Product.all
+  end
 end
 
 def show
