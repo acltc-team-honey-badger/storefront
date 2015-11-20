@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   delete "/products/:id" => 'products#destroy'
   patch "/products/:id" => 'products#update'
   get "/products/:id" => 'products#show'
+  post "/products/search" => 'products#search'
 end

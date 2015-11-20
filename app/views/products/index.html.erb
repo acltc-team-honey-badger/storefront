@@ -1,8 +1,17 @@
     <section>
       <div class="row">
+        <div class="pull-right view-choice">
+          <p><%= link_to "Show Discounted Items", "/products?view=discounted" %></p>
+          <p><%= link_to "Show Priced Lowest to Highest", "/products?view=order_by_price" %></p>
+          <p><%= link_to "Show Priced Highest to Lowest", "/products?view=order_by_price_desc" %></p>
+          <p><%= link_to "I'm feeling lucky", "/products/random" %></p>
+          <p><%= link_to "Show All", "/products" %></p>
 
+        </div>
+      </div>
+      <div class="row">
+      
       <!--Make magic happen here Ruby!-->
-      <%= link_to "Show Discounted Items", "/products?view=discounted" %>
 
 
       <% @tacos.each do |taco| %>

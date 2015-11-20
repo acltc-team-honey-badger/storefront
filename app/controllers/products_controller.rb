@@ -3,13 +3,21 @@ class ProductsController < ApplicationController
 def index
   if params[:view] == "discounted"
     @tacos = Product.get_discounted
+  elsif params[:view] == "order_by_price"
+    @tacos = Product.order(:price)
+  elsif params[:view] == "order_by_price_desc"
+    @tacos = Product.order(price: :desc)
   else
     @tacos = Product.all
   end
 end
 
 def show
-  @taco = Product.find_by(id: params[:id])
+  if params[:id] == "random"
+    @taco = Product.all.sample
+  else
+    @taco = Product.find_by(id: params[:id])
+  end
 end
 
 def new
@@ -36,6 +44,12 @@ def destroy
   @taco.destroy
   flash[:warning] = "Taco destroyed!"
   redirect_to "/"
+end
+
+def search
+  search_term = params[:search]
+  @tacos = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
+  render :index
 end
 
 

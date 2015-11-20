@@ -52,6 +52,15 @@
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p><%= message %></p>
   </div>
   <% end %>
+  <div class="row">
+    <div class="pull-right">
+      <%= form_tag "/products/search", method: :post do %>
+        <%= label_tag :search %>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search" %>
+      <% end %>
+    </div>
+  </div>
 <%= yield %>
 </div>
 </body>
