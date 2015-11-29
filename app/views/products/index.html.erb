@@ -6,7 +6,9 @@
           <p><%= link_to "Show Priced Highest to Lowest", "/products?view=order_by_price_desc" %></p>
           <p><%= link_to "I'm feeling lucky", "/products/random" %></p>
           <p><%= link_to "Show All", "/products" %></p>
-
+          <% @categories.each do |category| %>
+            <p><%= link_to "#{category.name} Tacos", "/products?category=#{category.name}" %></p>
+          <% end %>
         </div>
       </div>
       <div class="row">

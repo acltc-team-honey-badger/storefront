@@ -1,5 +1,5 @@
 User.create!([
-  {email: "mark@anyonecanlearntocode.com", encrypted_password: "$2a$10$QErQHpYhPDb443CFH3TqH.c1IRRWTacviYOp9d9GE9MRbQrHzC9zm", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-11-26 01:27:21", last_sign_in_at: "2015-11-26 01:27:21", current_sign_in_ip: "::1", last_sign_in_ip: "::1"}
+  {email: "mark@anyonecanlearntocode.com", password: "password"}
 ])
 Image.create!([
   {product_id: 1, image_url: "http://www.foodpeoplewant.com/wp-content/uploads/2009/09/Tacos-De-Cochinita-Pibil-1024x686.jpg"},

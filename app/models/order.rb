@@ -2,9 +2,9 @@ class Order < ActiveRecord::Base
   belongs_to :product
   belongs_to :user
 
-  validates :user, :product, presence: true
+  #validates :user, :product, presence: true
 
-  validate :quantity_must_be_5
+  #validate :quantity_must_be_5
 
 
   def quantity_must_be_5
