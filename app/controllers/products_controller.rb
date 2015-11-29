@@ -2,53 +2,58 @@ class ProductsController < ApplicationController
 
 def index
   if params[:view] == "discounted"
-    @tacos = Product.get_discounted
+    @products = Product.get_discounted
   elsif params[:view] == "order_by_price"
-    @tacos = Product.order(:price)
+    @products = Product.order(:price)
   elsif params[:view] == "order_by_price_desc"
-    @tacos = Product.order(price: :desc)
+    @products = Product.order(price: :desc)
   else
-    @tacos = Product.all
+    @products = Product.all
   end
 end
 
 def show
   if params[:id] == "random"
-    @taco = Product.all.sample
+    @product = Product.all.sample
   else
-    @taco = Product.find_by(id: params[:id])
+    @product = Product.find_by(id: params[:id])
   end
 end
 
 def new
+  @product = Product.new
 end
 def create
-  @taco = Product.create(id: params[:id], name: params[:name], price: params[:price], image: params[:image], description: params[:description], rating: params[:rating])
+  @product = Product.new(id: params[:id], name: params[:name], price: params[:price], description: params[:description], rating: params[:rating], user_id: current_user.id)
+  if @product.save
   flash[:success] = "Taco made!"
-  redirect_to "/products/#{@taco.id}"
+  redirect_to "/products/#{@product.id}"
+  else
+    render :new
+  end
 end
 
 def edit
-  @taco = Product.find_by(id: params[:id])
+  @product = Product.find_by(id: params[:id])
 end
 
 def update
-  @taco = Product.find_by(id: params[:id])
-  @taco.update(id: params[:id], name: params[:name], price: params[:price], image: params[:image], description: params[:description], rating: params[:rating])
+  @product = Product.find_by(id: params[:id])
+  @product.update(id: params[:id], name: params[:name], price: params[:price], image: params[:image], description: params[:description], rating: params[:rating])
   flash[:success] = "This taco has been updated!"
-  redirect_to "/products/#{@taco.id}"
+  redirect_to "/products/#{@product.id}"
 end
 
 def destroy
-  @taco = Product.find_by(id: params[:id])
-  @taco.destroy
+  @product = Product.find_by(id: params[:id])
+  @product.destroy
   flash[:warning] = "Taco destroyed!"
   redirect_to "/"
 end
 
 def search
   search_term = params[:search]
-  @tacos = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
+  @products = Product.where("name LIKE ? OR description LIKE ?", "%#{search_term}%", "%#{search_term}%")
   render :index
 end
 

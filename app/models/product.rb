@@ -1,5 +1,10 @@
 class Product < ActiveRecord::Base
   belongs_to :supplier
+  has_many :images
+  belongs_to :user
+  has_many :orders
+
+  validates :name, :description, :price, presence: true
 
   def self.get_discounted
     Product.where("price < ?", 50)
@@ -15,9 +20,9 @@ class Product < ActiveRecord::Base
 
   def show
     if params[:id] = "random"
-      @taco = Product.all.sample
+      @product = Product.all.sample
     else
-      @taco = Product.find_by(id: params[:id])
+      @product = Product.find_by(id: params[:id])
     end
   end
 
