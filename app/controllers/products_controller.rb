@@ -16,6 +16,7 @@ def index
 end
 
 def show
+  @carted_product = CartedProduct.new
   if params[:id] == "random"
     @product = Product.all.sample
   else

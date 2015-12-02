@@ -1,15 +1,15 @@
     <section>
       <div class="row">
-        <div class="pull-right view-choice">
-          <p><%= link_to "Show Discounted Items", "/products?view=discounted" %></p>
-          <p><%= link_to "Show Priced Lowest to Highest", "/products?view=order_by_price" %></p>
-          <p><%= link_to "Show Priced Highest to Lowest", "/products?view=order_by_price_desc" %></p>
-          <p><%= link_to "I'm feeling lucky", "/products/random" %></p>
-          <p><%= link_to "Show All", "/products" %></p>
+        <ul class="pull-right view-choice">
+          <li><%= link_to "Show Discounted Items", "/products?view=discounted" %></li>
+          <li><%= link_to "Show Priced Lowest to Highest", "/products?view=order_by_price" %></li>
+          <li><%= link_to "Show Priced Highest to Lowest", "/products?view=order_by_price_desc" %></li>
+          <li><%= link_to "I'm feeling lucky", "/products/random" %></li>
+          <li><%= link_to "Show All", "/products" %></li>
           <% @categories.each do |category| %>
-            <p><%= link_to "#{category.name} Tacos", "/products?category=#{category.name}" %></p>
+            <li><%= link_to "#{category.name} Tacos", "/products?category=#{category.name}" %></li>
           <% end %>
-        </div>
+        </ul>
       </div>
       <div class="row">
       
@@ -21,10 +21,10 @@
         <div class="col-sm-4">
           <div class="taco_single">
             <h2><%= taco.name %></h2>
-            <p>Price: <%= taco.price %></p>
+            <li>Price: <%= taco.price %></li>
             <a href="/products/<%= taco.id %>" title="View Taco"><img src="<%= taco.images.first.image_url %>" alt="<%= taco.name %>" class="img-responsive taco_single_image"></a>
-            <p>Description: <%= taco.description %></p>
-            <p>Rating: <span class="rating"><%= taco.rating %></span></p>
+            <li>Description: <%= taco.description %></li>
+            <li>Rating: <span class="rating"><%= taco.rating %></span></li>
           </div>
         </div>
       <% end %>
