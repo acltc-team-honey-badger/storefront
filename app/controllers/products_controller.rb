@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_admin!, except: [:index, :show, :search]
+  # before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+
 
 def index
   @categories = Category.all
@@ -25,7 +28,11 @@ def show
 end
 
 def new
+  if current_user && current_user.admin?
   @product = Product.new
+  else
+    redirect_to "/"
+  end
 end
 def create
   @product = Product.new(id: params[:id], name: params[:name], price: params[:price], description: params[:description], rating: params[:rating], user_id: current_user.id)
