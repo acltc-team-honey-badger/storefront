@@ -1,10 +1,14 @@
 class CartedProductsController < ApplicationController
 
   def index
-    @carted_products = current_user.carted_products.where(status: "carted")
-    @subtotal = calculate_subtotal(@carted_products)
-    @tax = calculate_tax(@carted_products)
-    @total = @subtotal + @tax
+    if current_user && current_user.carted_products.where(status: "carted").any?
+      @carted_products = current_user.carted_products.where(status: "carted")
+      @subtotal = calculate_subtotal(@carted_products)
+      @tax = calculate_tax(@carted_products)
+      @total = @subtotal + @tax
+    else
+      redirect_to "/"
+    end
   end
 
 
@@ -18,6 +22,17 @@ class CartedProductsController < ApplicationController
     else
       render template: "products/show"
     end
+  end
+
+  def destroy
+    carted_product = CartedProduct.find_by(id: params[:id])
+    carted_product.status ="removed"
+    if carted_product.save
+      flash[:warning] = "#{carted_product.quantity} #{carted_product.product.name}(s) removed from cart."
+    else
+      flash[:danger] = "Product not removed from cart!"
+    end
+    redirect_to "/carted_products"
   end
 
 end
