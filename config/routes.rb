@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   post "/orders" => 'orders#create'
 
   get "/orders/:id" => 'orders#show'
+
+  resources :suppliers
 end

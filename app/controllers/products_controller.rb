@@ -35,7 +35,7 @@ def new
   end
 end
 def create
-  @product = Product.new(id: params[:id], name: params[:name], price: params[:price], description: params[:description], rating: params[:rating], user_id: current_user.id)
+  @product = Product.new(id: params[:id], name: params[:name], price: params[:price], description: params[:description], rating: params[:rating], user_id: current_user.id, supplier_id: params[:supplier][:supplier_id])
   if @product.save
   flash[:success] = "Taco made!"
   redirect_to "/products/#{@product.id}"

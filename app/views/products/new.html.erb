@@ -29,6 +29,10 @@
               <%= label_tag :rating %>
               <%= text_field_tag :rating, @product.rating %>
             </div>
+            <div>
+              <%= label_tag :supplier %>
+              <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %>
+            </div>
             <%= submit_tag "Add Taco" %>
             <% end %>
           </div>
