@@ -1,6 +1,6 @@
 User.create!([
   {email: "mark@anyonecanlearntocode.com", password: "password", role_id: 1},
-  {email: "markeban@yahoo.com", password: "password", role_id: 2},
+  {email: "markeban@yahoo.com", password: "password", role_id: 2}
 ])
 CartedProduct.create!([
   {user_id: 1, product_id: 1, quantity: 4, order_id: 2, status: "purchased"},
@@ -40,13 +40,19 @@ Product.create!([
   {name: "Tacos de Asador", price: "343.0", description: "Skirt steak seasoned and grilled until crisp, served in a corn tortilla with cilantro y cebollas. Spicy habanero or medium chile salsa upon request. #awesome", rating: nil, available: nil, in_stock: true, supplier_id: 1, user_id: nil},
   {name: "Tacos de pescado", price: "121.0", description: "Fresh Mahi Mahi battered and flash-fried, served on a corn tortilla and garnished with slaw, crema and a side of avocado, lime and pico de gallo.", rating: 5, available: nil, in_stock: true, supplier_id: 1, user_id: nil},
   {name: "Exploding Taco", price: "10.0", description: "BOOM!", rating: nil, available: nil, in_stock: true, supplier_id: 2, user_id: nil},
-  {name: "Carnitas", price: "34.0", description: "Twice-cooked mouthwatering pork tacos served on a corn tortilla con cebollas y cilantro", rating: nil, available: nil, in_stock: true, supplier_id: 1, user_id: nil}
+  {name: "Carnitas", price: "34.0", description: "Twice-cooked mouthwatering pork tacos served on a corn tortilla con cebollas y cilantro", rating: nil, available: nil, in_stock: true, supplier_id: 1, user_id: nil},
+  {name: "", price: nil, description: "", rating: nil, available: nil, in_stock: true, supplier_id: nil, user_id: 1},
+  {name: "", price: nil, description: "", rating: nil, available: nil, in_stock: true, supplier_id: nil, user_id: 1},
+  {name: "", price: nil, description: "", rating: nil, available: nil, in_stock: true, supplier_id: nil, user_id: 1},
+  {name: "", price: nil, description: "", rating: nil, available: nil, in_stock: true, supplier_id: nil, user_id: 1},
+  {name: "", price: nil, description: "", rating: nil, available: nil, in_stock: true, supplier_id: 3, user_id: 1}
 ])
 Role.create!([
   {name: "admin"},
   {name: "shopper"}
 ])
 Supplier.create!([
-  {name: "Taco Hut", phone: "312.564.2342", email: "tacoh@gmail.com"},
-  {name: "Taco Express", phone: "414.232.2342", email: "texpress@gmail.com"}
+  {name: "Taco Hut Express", phone: "312.564.2342", email: "tacohut@gmail.com", active: false},
+  {name: "Taco Express", phone: "414.232.2342", email: "texpress@gmail.com", active: true},
+  {name: "Johnny's Tacos", phone: "415.345.1212", email: "jtaco@gmail.com", active: true}
 ])

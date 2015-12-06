@@ -9,7 +9,7 @@ class SuppliersController < ApplicationController
   end
 
   def create
-    @supplier = Supplier.new(params[:supplier])
+    @supplier = Supplier.new(supplier_params)
     if @supplier.save
       redirect_to "/suppliers/#{@supplier.id}"
     else
@@ -27,7 +27,7 @@ class SuppliersController < ApplicationController
 
   def update
     @supplier = Supplier.find_by(id: params[:id])
-    if @supplier.update(params[:supplier])
+    if @supplier.update(supplier_params)
       redirect_to "/suppliers/#{@supplier.id}"
     else
       render :edit
@@ -38,4 +38,14 @@ class SuppliersController < ApplicationController
     Supplier.find_by(id: params[:id]).update(active: false)
     redirect_to "/suppliers"
   end
+
+
+  private
+
+  def supplier_params
+    params.require(:supplier).permit(:name, :email, :phone_number)
+  end
+
+
+
 end
